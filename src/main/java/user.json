@@ -1,1 +1,15 @@
-null
+{
+  "0": {
+    "amount": 0.0
+  },
+  "1": {
+    "id": "1",
+    "category": "OTHER",
+    "amount": 200.0
+  },
+  "2": {
+    "id": "2",
+    "category": "OTHER",
+    "amount": 200.0
+  }
+}

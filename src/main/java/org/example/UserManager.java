@@ -27,7 +27,6 @@ public class UserManager {
             System.out.println("Key: " + name);
         }
     }
-
     public void saveFile(User user) throws IOException {
         userList.put(user.getFirstname(), user);
         FileWriter fw = new FileWriter(new File(fileName));

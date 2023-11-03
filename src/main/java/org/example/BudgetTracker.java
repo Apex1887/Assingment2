@@ -1,6 +1,4 @@
 package org.example;
-import com.google.gson.Gson;
-
 import java.awt.List;
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -12,19 +10,37 @@ public class BudgetTracker {
         Scanner scanner = new Scanner(System.in);
 
         ExpenseStorage expenseStorage = new ExpenseStorage();
-        IncomeStorage incomeStorage = new IncomeStorage();
+        expenseStorage.readfile();
 
-        List list = new List();
-        Gson gson = new Gson();
+      //  IncomeStorage incomeStorage = new IncomeStorage();
+        //List list = new List();
+       // User user = new User("Amrit", "Singh");
 
-        String filename = "src/main/java/user.json";
-        User user = new User("Amrit","Singh");
+        Expense expense = new Expense(200, "1", EExpenseCategory.FOOD);
 
-        FileWriter fw = new FileWriter (filename);
-        gson.toJson(user, fw);
-        fw.flush();
+      //  expenseStorage.createExpense();
+     //   expenseStorage.savefile();
 
-        try {
+   // expenseStorage.addExpense(expense);
+   // expenseStorage.savefile();
+
+    String choice = scanner.nextLine();
+
+    switch (choice) {
+        case "1":
+            System.out.println("Ange belopp: ");
+            double amount = scanner.nextDouble();
+            scanner.nextLine();
+            System.out.println("Ange id: ");
+            String id = scanner.nextLine();
+           // System.out.println("Ange kategori (FOOD, HOUSING, TRANSPORTATION, ENTERTAINMENT, OTHER): ");
+           // String categoryStr = EExpenseCategory.FOOD;
+            Expense expense1 = new Expense(amount, id, EExpenseCategory.FOOD);
+            expenseStorage.addExpense(expense1);
+            expenseStorage.savefile();
+            break;
+    }
+       /* try {
             while (true) {
                 System.out.println("BudgetTracker ");
                 System.out.println("1. Lägg till utgift");
@@ -126,6 +142,6 @@ public class BudgetTracker {
         } catch (InputMismatchException e) {
             System.out.println("Invalid input please try again");
         }
+    }*/
     }
-
 }

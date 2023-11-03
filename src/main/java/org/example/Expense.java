@@ -5,8 +5,8 @@ public class Expense extends Transaction{
 
     private String id;
 
-    public Expense(double amount, Date date, EExpenseCategory category) {
-        super(amount, date);
+    public Expense(double amount, String id, EExpenseCategory category) {
+        super(amount);
         this.id = id;
         setCategory(EExpenseCategory.FOOD.HOUSING.TRANSPORTATION.ENTERTAINMENT.OTHER);
     }
@@ -28,4 +28,7 @@ public class Expense extends Transaction{
                 '}';
     }
 
+    public String getId() {
+        return id;
+    }
 }

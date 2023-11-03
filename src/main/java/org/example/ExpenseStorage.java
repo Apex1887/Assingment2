@@ -11,21 +11,20 @@ import java.util.Scanner;
 
 public class ExpenseStorage {
 
-    private static Map<String, User> expenseList;
+    private Map<String, Expense> expenseList;
     static String filename = "src/main/java/user.json";
     static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    public ExpenseStorage() throws IOException {
-        savefile();
+    public ExpenseStorage() {
+
     }
-    public static void savefile()throws IOException{
-            Gson gson = new Gson();
+    public void savefile()throws IOException{
             FileWriter fw = new FileWriter(new File(filename));
             gson.toJson(expenseList, fw);
             fw.close();
             System.out.println("File saved: " + filename);
     }
-    public static void readfile()throws IOException{
+    public void readfile()throws IOException{
             Type type = new TypeToken<Map<String, Expense>>() {}.getType();
             Reader reader = new FileReader(new File(filename));
             expenseList = gson.fromJson(reader, type);
@@ -40,8 +39,8 @@ public class ExpenseStorage {
         String firstname = scanner.next();
 
         if (expenseList.containsKey(firstname)) {
-            User user = expenseList.get(firstname);
-            System.out.println("Expense list for " + user.getFirstname() + " " + user.getLastname());
+            Expense expense = expenseList.get(firstname);
+            System.out.println("Expense list for " + expense.getAmount() + " " + expense.getDate());
             System.out.println();
             System.out.println("Expenses: " + Expense.getexpense());
         } else {
@@ -49,15 +48,15 @@ public class ExpenseStorage {
         }
       //  savefile();
     }
-    public static void updateExpense(String firstname, double newAmount) throws IOException {
-        User expense = expenseList.get(firstname);
+    public void updateExpense(String firstname, double newAmount) throws IOException {
+        Expense expense = expenseList.get(firstname);
         //expense.setAmount(newAmount);
         savefile();
     }
 
     public void searchExpense(String search1) throws IOException {
     }
-    static void createExpense()throws IOException{
+    public void createExpense()throws IOException{
         System.out.println("Ange belopp: ");
         Scanner scanner = new Scanner(System.in);
         double amount = scanner.nextDouble();
@@ -77,7 +76,11 @@ public class ExpenseStorage {
         } catch (Exception e) {
             System.out.println("Ogiltigt datumformat. Använd formatet 'yyyy-MM-dd'.");
         }
-        new Expense(amount, date, category);
+        //new Expense(amount, category);
+    }
+
+    public void addExpense(Expense expense) {
+        expenseList.put(expense.getId(), expense);
     }
     public double calculateTotalExpenses() {
         return 0;
