@@ -2,6 +2,9 @@ package org.example;
 import java.util.Date;
 
 public class Income extends Transaction {
+
+    private String id;
+
     public EIncomeCategory getIncomeCategory() {
         return incomeCategory;
     }
@@ -18,34 +21,50 @@ public class Income extends Transaction {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     private EIncomeCategory incomeCategory;
 
     private Income income;
 
-    private String id;
 
-    public Income(double amount, Date date, EIncomeCategory category) {
-        super(amount, date);
+    public Income(double amount,String id, int categoryStr, Date date) {
+        super(amount, id, date);
         this.id = id;
-        setCategory(EIncomeCategory.LÖN.INVISTERINGAR.GÅVOR.ANNAT);
+        setCategory(categoryStr);
     }
+
     public Income getIncome(){
         return income;
     }
-    public EIncomeCategory getCategory() {
+    public EIncomeCategory setCategory() {
         return category;
     }
 
-    public void setCategory(EIncomeCategory category) {
-        this.category = category;
+    public void setCategory(int incomeCategory) {
+        switch (incomeCategory) {
+            case 1:
+                this.category = EIncomeCategory.LÖN;
+                break;
+            case 2:
+                this.category = EIncomeCategory.INVISTERINGAR;
+                break;
+            case 3:
+                this.category = EIncomeCategory.GÅVOR;
+                break;
+            case 4:
+                this.category = EIncomeCategory.ANNAT;
+                break;
+            default:
+                this.category = EIncomeCategory.ANNAT;
+                break;
+        }
+
     }
 
     private EIncomeCategory category;
 
+    public static Income getincome() {
+        return getincome();
+    }
 
     @Override
     public String toString() {

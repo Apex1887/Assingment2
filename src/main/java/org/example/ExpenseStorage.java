@@ -4,19 +4,16 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.lang.reflect.Type;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Map;
 import java.util.Scanner;
 
 public class ExpenseStorage {
-
     private Map<String, Expense> expenseList;
     static String filename = "src/main/java/user.json";
     static Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    
 
     public ExpenseStorage() {
-
     }
     public void savefile()throws IOException{
             FileWriter fw = new FileWriter(new File(filename));
@@ -35,28 +32,27 @@ public class ExpenseStorage {
         System.out.println("List of all your expenses");
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter your firstname");
-        String firstname = scanner.next();
+        System.out.println("Enter your id");
+        String id = scanner.next();
 
-        if (expenseList.containsKey(firstname)) {
-            Expense expense = expenseList.get(firstname);
+        if (expenseList.containsKey(id)) {
+            Expense expense = expenseList.get(id);
             System.out.println("Expense list for " + expense.getAmount() + " " + expense.getDate());
             System.out.println();
             System.out.println("Expenses: " + Expense.getexpense());
         } else {
             System.out.println("The user is not in the list.");
         }
-      //  savefile();
+
     }
-    public void updateExpense(String firstname, double newAmount) throws IOException {
-        Expense expense = expenseList.get(firstname);
-        //expense.setAmount(newAmount);
-        savefile();
+    public void updateExpense(Expense expense) {
+        expenseList.put(expense.getId(), expense);
+        expense.setAmount();
     }
 
     public void searchExpense(String search1) throws IOException {
     }
-    public void createExpense()throws IOException{
+   /* public void createExpense()throws IOException{
         System.out.println("Ange belopp: ");
         Scanner scanner = new Scanner(System.in);
         double amount = scanner.nextDouble();
@@ -77,7 +73,7 @@ public class ExpenseStorage {
             System.out.println("Ogiltigt datumformat. Använd formatet 'yyyy-MM-dd'.");
         }
         //new Expense(amount, category);
-    }
+    }*/
 
     public void addExpense(Expense expense) {
         expenseList.put(expense.getId(), expense);

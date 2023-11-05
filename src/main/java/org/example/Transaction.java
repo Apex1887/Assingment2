@@ -7,14 +7,9 @@ public class Transaction {
 
     private Date date;
 
-    public Transaction(double amount, Date date) {
+    public Transaction(double amount, String id, Date date) {
         this.amount = amount;
         this.date = date;
-
-    }
-
-    public Transaction(double amount) {
-        this.amount = amount;
     }
 
     public double getAmount() {
@@ -30,7 +25,7 @@ public class Transaction {
                 ", date=" + date +
                 '}';
     }
-    public void setAmount(double amount) {
+    public void setAmount() {
         this.amount = amount;
     }
 }
