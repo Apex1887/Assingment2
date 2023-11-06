@@ -12,7 +12,7 @@ public class IncomeStorage {
     static String filename = "src/main/java/user.json";
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    public IncomeStorage(){
+    public IncomeStorage() throws IOException {
     }
      /*   public void listAllIncomes() {
             for (Map.Entry<String, User> entry : incomes.entrySet()) {

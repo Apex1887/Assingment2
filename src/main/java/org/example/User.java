@@ -1,4 +1,9 @@
 package org.example;
+import com.google.gson.Gson;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class User {
 
@@ -6,9 +11,14 @@ public class User {
 
     private String lastname;
 
-    public User(String firstname, String lastname) {
+    private Map<String, Income> incomeList;
+    private Map<String, Expense> expenseList;
+
+    public User(String firstname, String lastname) throws IOException {
         this.firstname = firstname;
         this.lastname = lastname;
+        incomeList = new HashMap<>();
+        expenseList= new HashMap<>();
     }
     public String getFirstname() {
         return firstname;
@@ -24,6 +34,14 @@ public class User {
     public String setLastname(String lastname){
         this.lastname = lastname;
         return lastname;
+    }
+
+    public Map<String, Income> getIncomeList() {
+        return incomeList;
+    }
+
+    public Map<String, Expense> getExpenseList() {
+        return expenseList;
     }
 
     @Override

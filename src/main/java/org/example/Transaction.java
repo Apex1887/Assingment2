@@ -1,5 +1,6 @@
 package org.example;
 import java.util.Date;
+import java.util.HashMap;
 
 public class Transaction {
 
@@ -7,7 +8,7 @@ public class Transaction {
 
     private Date date;
 
-    public Transaction(double amount, String id, Date date) {
+    public Transaction(double amount,String id, Date date) {
         this.amount = amount;
         this.date = date;
     }
@@ -26,6 +27,6 @@ public class Transaction {
                 '}';
     }
     public void setAmount() {
-        this.amount = amount;
+
     }
 }

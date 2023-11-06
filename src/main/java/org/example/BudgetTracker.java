@@ -45,8 +45,8 @@ public class BudgetTracker {
         try {
             while (true) {
                 System.out.println("BudgetTracker ");
-                System.out.println("1. Lägg till utgift");
-                System.out.println("2. Lägg till inkomst");
+                System.out.println("1. utgift");
+                System.out.println("2. inkomst");
                 System.out.println("3. Visa utgifter");
                 System.out.println("4. Visa inkomster");
                 System.out.println("5. Se budget");
@@ -93,9 +93,12 @@ public class BudgetTracker {
 
 
                         } else if (expenseChoice == 2) {
+                          // String id = scanner.nextLine();
+                            expenseStorage.removeExpense();
+                          //  scanner.nextLine();
+                        }
 
-
-                        } else if (expenseChoice == 3) {
+                        else if (expenseChoice == 3) {
                             expenseStorage.readfile();
                             System.out.println("Ange nytt belopp");
                             double amount = scanner.nextDouble();
@@ -129,7 +132,7 @@ public class BudgetTracker {
                         }
 
 
-                    case 2:
+                   /* case 2:
                         // Lägg en inkomst eller uppdatera/ta bort inkomst
                         System.out.println("1: Lägg till inkomst,2: Ta bort inkomst,3: Uppdatera inkomst");
                         int incomeChoice = scanner.nextInt();

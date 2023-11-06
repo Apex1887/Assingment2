@@ -4,6 +4,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -11,9 +12,9 @@ public class ExpenseStorage {
     private Map<String, Expense> expenseList;
     static String filename = "src/main/java/user.json";
     static Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    
 
-    public ExpenseStorage() {
+    public ExpenseStorage() throws IOException {
+        expenseList = new HashMap<>();
     }
     public void savefile()throws IOException{
             FileWriter fw = new FileWriter(new File(filename));
@@ -21,7 +22,18 @@ public class ExpenseStorage {
             fw.close();
             System.out.println("File saved: " + filename);
     }
-    public void readfile()throws IOException{
+   /* public void readfile() throws IOException {
+        File file = new File(filename);
+        if (file.exists()) {
+            Type type = new TypeToken<Map<String, Expense>>() {}.getType();
+            Reader reader = new FileReader(file);
+            expenseList = gson.fromJson(reader, type);
+            reader.close();
+        } else {
+            expenseList = new HashMap<>();
+        }
+    }*/
+     public void readfile()throws IOException{
             Type type = new TypeToken<Map<String, Expense>>() {}.getType();
             Reader reader = new FileReader(new File(filename));
             expenseList = gson.fromJson(reader, type);
@@ -39,12 +51,50 @@ public class ExpenseStorage {
             Expense expense = expenseList.get(id);
             System.out.println("Expense list for " + expense.getAmount() + " " + expense.getDate());
             System.out.println();
-            System.out.println("Expenses: " + Expense.getexpense());
+            System.out.println("Expenses: " + Expense.getexpense(expense));
         } else {
             System.out.println("The user is not in the list.");
         }
-
     }
+
+  /*  public void removeExpense() throws IOException {
+        readfile();
+        System.out.println("Remove expense");
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter your ID to remove expense: ");
+        String id = scanner.next();
+
+        if (expenseList.containsKey(id)) {
+            Expense expense = expenseList.get(id);
+            System.out.println("Expense list for " + expense.getAmount() + " " + expense.getDate());
+            String elementToRemove = "id";
+            expenseList.remove(elementToRemove);
+            System.out.println("The expense has been removed from the user.");
+
+        } else {
+            System.out.println("The user is not in the list.");
+        }
+    }*/
+
+    public void removeExpense() throws IOException {
+        readfile(); // Läs in data från filen.
+
+        System.out.println("Remove expense");
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter your id");
+        String id = scanner.nextLine();
+
+        if (expenseList.containsKey(id)) {
+            expenseList.remove(id); // Ta bort utgiften med den angivna ID:en från listan.
+            savefile(); // Spara den uppdaterade listan till filen.
+            System.out.println("The expense with ID " + id + " has been removed.");
+        } else {
+            System.out.println("Expense with ID " + id + " not found.");
+        }
+    }
+
     public void updateExpense(Expense expense) {
         expenseList.put(expense.getId(), expense);
         expense.setAmount();
@@ -81,5 +131,4 @@ public class ExpenseStorage {
     public double calculateTotalExpenses() {
         return 0;
     }
-
 }

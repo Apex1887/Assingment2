@@ -1,18 +1,19 @@
 package org.example;
-
 import java.util.Date;
 
 public class Expense extends Transaction{
 
     private String id;
 
-    public Expense(double amount, String id, int expensecategory, Date date) {
+
+   public Expense(double amount, String id, int expensecategory, Date date) {
         super(amount, id, date);
         this.id = id;
         setCategory(expensecategory);
     }
-    public static Expense getexpense() {
-        return getexpense();
+
+    public static Expense getexpense(Expense expense) {
+        return expense;
     }
 
     public EExpenseCategory getCategory() {
@@ -43,10 +44,14 @@ public class Expense extends Transaction{
                 break;
         }
     }
-
     public String getId () {
             return id;
     }
-
-
+    @Override
+    public String toString() {
+        return "Expense{" +
+                "id='" + id + '\'' +
+                ", expenseCategory=" + expenseCategory +
+                '}';
+    }
 }

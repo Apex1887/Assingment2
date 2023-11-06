@@ -8,11 +8,9 @@ public class Income extends Transaction {
     public EIncomeCategory getIncomeCategory() {
         return incomeCategory;
     }
-
     public void setIncomeCategory(EIncomeCategory incomeCategory) {
         this.incomeCategory = incomeCategory;
     }
-
     public void setIncome(Income income) {
         this.income = income;
     }
@@ -20,25 +18,21 @@ public class Income extends Transaction {
     public String getId() {
         return id;
     }
-
     private EIncomeCategory incomeCategory;
 
     private Income income;
-
 
     public Income(double amount,String id, int categoryStr, Date date) {
         super(amount, id, date);
         this.id = id;
         setCategory(categoryStr);
     }
-
     public Income getIncome(){
         return income;
     }
     public EIncomeCategory setCategory() {
         return category;
     }
-
     public void setCategory(int incomeCategory) {
         switch (incomeCategory) {
             case 1:
@@ -62,9 +56,6 @@ public class Income extends Transaction {
 
     private EIncomeCategory category;
 
-    public static Income getincome() {
-        return getincome();
-    }
 
     @Override
     public String toString() {
